@@ -36,13 +36,18 @@ public class Battlefield {
         return index;
     }
 
-    public void addEntity(Entity e, int x, int y){
+    public boolean addEntity(Entity e, int x, int y){
+        if (map[x][y]!=-1)
+            return false;
         map[x][y]= e.getEntity_id();
         entities.add(e);
+        return true;
     }
 
-    public void changeEntityPosition(int entity_id,int x,int y){
+    public boolean changeEntityPosition(int entity_id,int x,int y){
         int index= findEntity(entity_id);
+        if(index==-1)
+            return false;
         int current_x= entities.get(index).getAbsolute_position_x();
         int current_y= entities.get(index).getAbsolute_position_y();
 
@@ -50,24 +55,34 @@ public class Battlefield {
         map[x][y]=entity_id;
         entities.get(index).setAbsolute_position_x(x);
         entities.get(index).setAbsolute_position_y(y);
+        return true;
     }
 
-    public void changeEntityHP(int entity_id,int hp){
+    public boolean changeEntityHP(int entity_id,int hp){
         int index=findEntity(entity_id);
+        if(index==-1)
+            return false;
         entities.get(index).setCurrent_hp(hp);
+        return true;
     }
 
-    public void changeEntityAP(int entity_id,int ap){
+    public boolean changeEntityAP(int entity_id,int ap){
         int index=findEntity(entity_id);
+        if(index==-1)
+            return false;
         entities.get(index).setAp(ap);
+        return true;
     }
 
-    public void removeEntity(int entity_id){
+    public boolean removeEntity(int entity_id){
         int index= findEntity(entity_id);
+        if(index==-1)
+            return false;
         int current_x= entities.get(index).getAbsolute_position_x();
         int current_y= entities.get(index).getAbsolute_position_y();
         map[current_x][current_y]=-1;
         entities.remove(index);
+        return true;
     }
 
     public int[][] getMap() {
