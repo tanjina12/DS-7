@@ -1,4 +1,14 @@
 package server.event;
 
-public class Heal {
+import server.entity.Entity;
+
+public class Heal extends Event{
+
+    private Entity target;
+
+
+    @Override
+    public void applyAction() {
+
+    }
 }
