@@ -1,5 +1,7 @@
 package server.entity;
 
+import server.utility.EntityType;
+
 import java.util.Vector;
 
 public class Entity {
@@ -9,7 +11,7 @@ public class Entity {
     private int ap;
     private int absolute_position_x;
     private int absolute_position_y;
-    private int type;
+    private EntityType type;
 
     public void setEntity_id(int entity_id) {
         this.entity_id = entity_id;
@@ -36,7 +38,7 @@ public class Entity {
     }
 
 
-    public void setType(int type) {
+    public void setType(EntityType type) {
         this.type = type;
     }
 
@@ -69,7 +71,7 @@ public class Entity {
         return absolute_position_y;
     }
 
-    public int getType() {
+    public EntityType getType() {
         return type;
     }
 

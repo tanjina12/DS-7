@@ -1,6 +1,7 @@
 package server;
 
 import server.entity.Entity;
+import server.utility.EntityType;
 
 import java.util.Vector;
 
@@ -36,7 +37,41 @@ public class Battlefield {
         return index;
     }
 
-    public boolean addEntity(Entity e, int x, int y){
+    // TODO: 11/29/17  randomness for setting x and y editing following method
+    public Vector<Integer> randomPos(){
+        Vector<Integer> pos= new Vector<>();
+        return pos;
+    }
+    // TODO: 11/29/17  randomness for entity initial hp and ap by editing following methods
+    public int randomHp(){
+        int hp=0;
+        return hp;
+    }
+    public int randomAp(){
+        int ap=0;
+        return ap;
+    }
+
+    // TODO: 11/29/17 create dragons
+
+    public Entity createNewPlayer(){
+        Vector<Integer> pos= randomPos();
+        int initial_hp= randomHp();
+        int ap=randomAp();
+
+        Entity e=new Entity();
+        e.setType(EntityType.Player);
+        e.setEntity_id(entities.size());
+        e.setInitial_hp(initial_hp);
+        e.setCurrent_hp(initial_hp);
+        e.setAp(ap);
+        e.setPosition(pos.get(0),pos.get(1));
+        return e;
+    }
+
+    public boolean addEntity(Entity e){
+        int x= e.getAbsolute_position_x();
+        int y= e.getAbsolute_position_y();
         if (map[x][y]!=-1)
             return false;
         map[x][y]= e.getEntity_id();

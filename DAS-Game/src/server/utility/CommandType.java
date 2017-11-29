@@ -4,6 +4,6 @@ public enum CommandType {
     MOVE,
     ATTACK,
     HEAL,
-    REMOVE,
+    DISCONNECT,
     CONNECT
 }
