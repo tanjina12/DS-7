@@ -35,6 +35,7 @@ public class Entity {
         this.absolute_position_y = absolute_position_y;
     }
 
+
     public void setType(int type) {
         this.type = type;
     }
