@@ -3,14 +3,17 @@ package server.event;
 import server.Battlefield;
 import server.entity.Entity;
 import server.utility.CommandType;
-import server.utility.EntityType;
+
 
 public class Event {
 
     private int starter_id;
     private int target_id;
-    private int requestTime;
+    private int simulationTime;
+    private int executionTime;
     private CommandType commandType;
+    private int pos_x;
+    private int pos_y;
 
     public void setStarter_id(int starter_id) {
         this.starter_id = starter_id;
@@ -20,13 +23,27 @@ public class Event {
         this.target_id = target_id;
     }
 
-    public void setRequestTime(int requestTime) {
-        this.requestTime = requestTime;
+    public void setSimulationTime(int simulationTime) {
+        this.simulationTime = simulationTime;
+    }
+
+    public void setExecutionTime(int executionTime) {
+        this.executionTime = executionTime;
     }
 
     public void setCommandType(CommandType commandType) {
         this.commandType = commandType;
     }
+
+    public void setPos_x(int pos_x) {
+        this.pos_x = pos_x;
+    }
+
+    public void setPos_y(int pos_y) {
+        this.pos_y = pos_y;
+    }
+
+
 
     public int getStarter_id() {
         return starter_id;
@@ -36,15 +53,25 @@ public class Event {
         return target_id;
     }
 
-    public int getRequestTime() {
-        return requestTime;
+    public int getSimulationTime() {
+        return simulationTime;
+    }
+
+    public int getExecutionTime() {
+        return executionTime;
     }
 
     public CommandType getCommandType() {
         return commandType;
     }
 
+    public int getPos_x() {
+        return pos_x;
+    }
 
+    public int getPos_y() {
+        return pos_y;
+    }
 
     //different types of commands
 
@@ -62,7 +89,7 @@ public class Event {
         return true;
     }
 
-    public boolean move(int pos_x,int pos_y){
+    public boolean move(){
         if (commandType!=CommandType.MOVE)
             return false;
         // TODO: 11/29/17 evaluate whether pos_x and pos_y is valid destination for movement or not
