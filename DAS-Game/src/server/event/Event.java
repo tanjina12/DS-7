@@ -75,26 +75,38 @@ public class Event {
 
     //different types of commands
 
-    public boolean attack(){
+    public boolean attack(Battlefield battlefield){
         if (commandType!=CommandType.ATTACK)
             return false;
-        // TODO: 11/29/17 calculate hp and ap of sender and target ,use battlefiled method(changeHp and changeAp and maybe remove) to update both entities
-        return true;
+
+        int ap = battlefield.getEntity(starter_id).getAp();
+        int hp = battlefield.getEntity(target_id).getCurrent_hp() - ap;
+
+        if(hp > 0)
+            return battlefield.changeEntityHP(target_id, hp);
+        return battlefield.removeEntity(target_id);
     }
 
-    public boolean heal(){
+    public boolean heal(Battlefield battlefield){
         if (commandType!=CommandType.HEAL)
             return false;
-        // TODO: 11/29/17 calculate hp and ap of sender and target ,use battlefield method(changeHp and changeAp) to update both entities
-        return true;
+
+        int ap = battlefield.getEntity(starter_id).getAp();
+        int hp = battlefield.getEntity(target_id).getCurrent_hp() + ap;
+
+        if(hp >= battlefield.getEntity(target_id).getInitial_hp())
+            return battlefield.changeEntityHP(target_id, battlefield.getEntity(target_id).getInitial_hp());
+        return battlefield.changeEntityHP(target_id, hp);
     }
 
-    public boolean move(){
+    public boolean move(Battlefield battlefield, int pos_x,int pos_y){
         if (commandType!=CommandType.MOVE)
             return false;
-        // TODO: 11/29/17 evaluate whether pos_x and pos_y is valid destination for movement or not
-        // TODO: 11/29/17 use battlefield method (changePosition) to update entity
-        return true;
+
+        //check if there is some other player or dragon on the cell
+        if(battlefield.isEmptyCell(pos_x, pos_y))
+            return battlefield.changeEntityPosition(starter_id, pos_x, pos_y);
+        return false;
     }
 
     public boolean connect(Battlefield battlefield){

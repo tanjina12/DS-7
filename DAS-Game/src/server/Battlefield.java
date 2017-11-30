@@ -101,6 +101,13 @@ public class Battlefield {
         return true;
     }
 
+    public boolean isEmptyCell(int pos_x, int pos_y)
+    {
+        if(map[pos_x][pos_y] == -1)
+            return true;
+        return false;
+    }
+
     public boolean changeEntityAP(int entity_id,int ap){
         int index=findEntity(entity_id);
         if(index==-1)
